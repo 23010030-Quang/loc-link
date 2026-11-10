@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lọc Link Shopee</title>
+  <style>
+    :root{--blue:#3e4dde;--navy:#17224d;--ink:#2c3455;--muted:#7f879f;--line:#e2e6f0;--bg:#f5f7fb;--white:#fff;--green:#129565}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 5%,#e8ebff 0,transparent 30rem),var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}
+    button,textarea,input{font:inherit}.top{height:68px;padding:0 max(24px,calc((100vw - 1240px)/2));display:flex;align-items:center;justify-content:space-between;background:#ffffffed;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--navy);font-weight:800}.logo{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#6370ef,#2938bd);font-style:italic;box-shadow:0 8px 20px #3e4dde3a}
+    .safe{color:var(--muted);font-size:12px}.safe:before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;background:#28b77b;box-shadow:0 0 0 4px #e1f7ed}
+    main{max-width:1240px;margin:auto;padding:42px 0 30px}.eyebrow{display:inline-block;padding:5px 9px;border-radius:6px;color:var(--blue);background:#eceeff;font-size:10px;font-weight:800;letter-spacing:.12em}
+    h1{margin:12px 0 7px;color:var(--navy);font-size:38px;line-height:1.08;letter-spacing:-.04em}.lead{margin:0 0 28px;color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:1.02fr .96fr 1.02fr;gap:16px}.card,.result{padding:21px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 10px 28px #1f284d0d}
+    .card{min-height:490px;display:flex;flex-direction:column}.head{display:flex;align-items:center;justify-content:space-between}.head div{display:flex;align-items:center;gap:9px}.step{color:var(--blue);font-size:10px;font-weight:850}.head h2,.result h2{margin:0;color:var(--navy);font-size:15px}
+    .help{margin:7px 0 14px;color:var(--muted);font-size:11px}.mini{padding:0;border:0;background:transparent;color:var(--blue);font-size:10px;font-weight:750;cursor:pointer}
+    textarea{width:100%;min-height:290px;padding:14px;resize:vertical;border:1px solid #dfe3ee;border-radius:9px;outline:none;background:#fbfcfe;color:#3d4563;font-size:11px;line-height:1.65}
+    textarea:focus{border-color:#8e98ee;box-shadow:0 0 0 3px #3e4dde14}textarea::placeholder{color:#aab0c1}.meta{display:flex;justify-content:space-between;margin:8px 2px 12px;color:#959caf;font-size:9px}
+    .btn{min-height:40px;border-radius:8px;border:0;background:var(--blue);color:#fff;font-size:11px;font-weight:750;cursor:pointer;box-shadow:0 8px 18px #3e4dde30}.btn:hover{background:#303fc3}.card>.btn{margin-top:auto}
+    .options{display:flex;gap:18px;margin-bottom:12px;color:#68708a;font-size:10px}.options label{display:flex;align-items:center;gap:5px}.count{padding:4px 8px;border-radius:999px;background:#eceeff;color:var(--blue);font-size:9px;font-weight:750}
+    .links{height:288px;padding:13px;overflow:auto;border:1px solid #dfe3ee;border-radius:9px;background:#fbfcfe;white-space:pre-wrap;overflow-wrap:anywhere;color:#4d5676;font:10px/1.7 Consolas,monospace}
+    .links.empty{display:grid;place-items:center;text-align:center;color:#9ba2b5;font-family:inherit}.secondary{margin-top:auto;min-height:40px;border:1px solid #dfe3ee;border-radius:8px;background:#fff;color:#59617e;font-size:11px;font-weight:750;cursor:pointer}
+    .new textarea{min-height:244px}.match{display:flex;justify-content:space-between;margin:8px 2px 11px;color:#959caf;font-size:9px}.match .ok{color:var(--green);font-weight:750}.compact{justify-content:space-between;padding-top:10px;border-top:1px solid #edf0f6}
+    .result{margin-top:18px}.result-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}.result-head p{margin:4px 0 0;color:var(--muted);font-size:10px}.copy{padding:10px 15px;border:0;border-radius:8px;background:var(--blue);color:#fff;font-size:11px;font-weight:750;cursor:pointer}.result textarea{min-height:155px}
+    .toast{display:none;position:fixed;right:22px;bottom:22px;max-width:420px;padding:12px 15px;border:1px solid #bcebd4;border-radius:10px;background:#ebfaf3;color:#236044;font-size:12px;font-weight:650;box-shadow:0 14px 36px #1f284d22}.toast.bad{border-color:#efc0c7;background:#fff0f2;color:#8b3142}
+    footer{display:flex;justify-content:space-between;margin-top:18px;color:#9299ac;font-size:10px}
+    @media(max-width:1280px){main{padding-left:22px;padding-right:22px}}@media(max-width:900px){.grid{grid-template-columns:1fr}.card{min-height:auto}.card>.btn,.secondary{margin-top:14px}}@media(max-width:600px){.top{padding:0 15px}.safe{font-size:0}main{padding:28px 14px}h1{font-size:30px}.compact{flex-direction:column}.result-head,footer{align-items:flex-start;gap:10px;flex-direction:column}.copy{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="brand"><span class="logo">L</span><span>LayLink Shopee</span></div><span class="safe">Chạy trực tiếp trên thiết bị</span></header>
+  <main>
+    <span class="eyebrow">CÔNG CỤ MIỄN PHÍ</span>
+    <h1>Lọc &amp; thay link Shopee hàng loạt</h1>
+    <p class="lead">Dán bài deal, lọc link và thay bằng link affiliate mới theo đúng thứ tự.</p>
+    <section class="grid">
+      <article class="card">
+        <div class="head"><div><span class="step">01</span><h2>Văn bản gốc</h2></div><button class="mini" onclick="pasteTo('source')">Dán clipboard</button></div>
+        <p class="help">Dán nguyên bài viết có các link cần thay.</p>
+        <textarea id="source" placeholder="🎀 MÃ SHOPEE HOT&#10;&#10;25% toàn sàn max 250K&#10;https://s.shopee.vn/..."></textarea>
+        <div class="meta"><span id="chars">0 ký tự</span><span id="detected">0 link phát hiện</span></div>
+        <button class="btn" onclick="filterLinks()">Lọc link</button>
+      </article>
+      <article class="card">
+        <div class="head"><div><span class="step">02</span><h2>Link đã lọc</h2></div><span class="count" id="count">0 link</span></div>
+        <p class="help">Kiểm tra danh sách trước khi thay thế.</p>
+        <div class="options"><label><input id="dedupe" type="checkbox" checked onchange="filterLinks(false)">Loại bỏ trùng</label><label><input id="groups" type="checkbox" onchange="renderFiltered()">Tách nhóm (5)</label></div>
+        <div id="filtered" class="links empty">Chưa có link nào<br>Link sau khi lọc sẽ xuất hiện ở đây</div>
+        <button class="secondary" onclick="copyValue(filteredLinks.join('\n'),'Đã sao chép danh sách link')">Sao chép danh sách</button>
+      </article>
+      <article class="card new">
+        <div class="head"><div><span class="step">03</span><h2>Link Affiliate mới</h2></div><button class="mini" onclick="pasteTo('newLinks')">Dán clipboard</button></div>
+        <p class="help">Mỗi dòng một link, theo đúng thứ tự bên trái.</p>
+        <textarea id="newLinks" placeholder="https://s.shopee.vn/link-moi-1&#10;https://s.shopee.vn/link-moi-2"></textarea>
+        <div class="match"><span id="newCount">0 link mới</span><span id="needed">Đang chờ link gốc</span></div>
+        <div class="options compact"><label><input id="keepParams" type="checkbox" checked>Giữ tham số</label><label><input id="force" type="checkbox">Force</label><label><input id="onlyShopee" type="checkbox" checked onchange="filterLinks(false)">Chỉ Shopee</label></div>
+        <button class="btn" onclick="replaceAll()">Thay thế ngay →</button>
+      </article>
+    </section>
+    <section class="result">
+      <div class="result-head"><div><h2>Kết quả cuối cùng</h2><p>Văn bản giữ nguyên định dạng, chỉ thay các đường link.</p></div><button class="copy" onclick="copyValue(el('result').value,'Đã sao chép kết quả')">Sao chép kết quả</button></div>
+      <textarea id="result" placeholder="Kết quả sau khi thay link sẽ xuất hiện ở đây..."></textarea>
+    </section>
+    <footer><strong>LayLink Shopee</strong><span>Không tải dữ liệu lên máy chủ</span></footer>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script>
+    const URL_RE=/https?:\/\/[^\s<>"'`]+/gi;
+    let rawLinks=[],filteredLinks=[];
+    const el=id=>document.getElementById(id);
+    const clean=u=>u.replace(/[),.;!?]+$/,'');
+    function extract(text){
+      const all=(text.match(URL_RE)||[]).map(clean);
+      if(!el('onlyShopee').checked)return all;
+      return all.filter(x=>{try{const h=new URL(x).hostname.toLowerCase();return h==='shopee.vn'||h.endsWith('.shopee.vn')||h==='shope.ee'||h.endsWith('.shope.ee')}catch{return false}});
+    }
+    function toast(text,bad=false){const t=el('toast');t.textContent=text;t.className='toast'+(bad?' bad':'');t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',3000)}
+    function refreshMeta(){rawLinks=extract(el('source').value);el('chars').textContent=el('source').value.length.toLocaleString('vi-VN')+' ký tự';el('detected').textContent=rawLinks.length+' link phát hiện';const n=extract(el('newLinks').value).length;el('newCount').textContent=n+' link mới';el('needed').textContent=filteredLinks.length?(n===filteredLinks.length?'✓ Khớp số lượng':'Cần '+filteredLinks.length+' link'):'Đang chờ link gốc';el('needed').className=n===filteredLinks.length&&n?'ok':''}
+    function filterLinks(notify=true){rawLinks=extract(el('source').value);filteredLinks=el('dedupe').checked?[...new Set(rawLinks)]:rawLinks.slice();renderFiltered();refreshMeta();if(notify)toast(filteredLinks.length?'Đã lọc '+filteredLinks.length+' link':'Không tìm thấy link Shopee',!filteredLinks.length)}
+    function renderFiltered(){el('count').textContent=filteredLinks.length+' link';if(!filteredLinks.length){el('filtered').className='links empty';el('filtered').innerHTML='Chưa có link nào<br>Link sau khi lọc sẽ xuất hiện ở đây';return}el('filtered').className='links';el('filtered').textContent=el('groups').checked?filteredLinks.map((x,i)=>x+((i+1)%5===0?'\n':'')).join('\n'):filteredLinks.join('\n')}
+    function strip(u){try{const x=new URL(u);return x.hostname==='s.shopee.vn'?u:x.origin+x.pathname}catch{return u}}
+    function replaceAll(){filterLinks(false);let newer=extract(el('newLinks').value);if(!el('keepParams').checked)newer=newer.map(strip);if(!filteredLinks.length)return toast('Chưa có link gốc để thay',true);if(!newer.length)return toast('Hãy dán danh sách link mới',true);if(!el('force').checked&&newer.length!==filteredLinks.length)return toast('Cần '+filteredLinks.length+' link mới nhưng hiện có '+newer.length,true);
+      let out=el('source').value;
+      if(el('dedupe').checked){const map=new Map(filteredLinks.map((x,i)=>[x,newer[i]]));out=out.replace(URL_RE,m=>{const c=clean(m),s=m.slice(c.length);return(map.get(c)||c)+s})}
+      else{let i=0;out=out.replace(URL_RE,m=>{const c=clean(m),s=m.slice(c.length),n=newer[i];if(n){i++;return n+s}return el('force').checked?(newer.at(-1)||c)+s:m})}
+      el('result').value=out;toast('Đã thay link theo đúng thứ tự')}
+    async function copyValue(value,msg){if(!value)return toast('Chưa có nội dung để sao chép',true);try{await navigator.clipboard.writeText(value);toast(msg)}catch{const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();toast(msg)}}
+    async function pasteTo(id){try{el(id).value=await navigator.clipboard.readText();id==='source'?filterLinks(false):refreshMeta()}catch{toast('Hãy bấm Ctrl + V để dán nội dung',true)}}
+    el('source').addEventListener('input',refreshMeta);el('newLinks').addEventListener('input',refreshMeta);refreshMeta();
+  </script>
+</body>
+</html>
